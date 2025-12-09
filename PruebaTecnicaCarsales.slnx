@@ -1,3 +1,8 @@
 <Solution>
-  <Project Path="PruebaTecnicaCarsales/PruebaTecnicaCarsales.csproj" />
+  <Project Path="PruebaTecnicaCarsales.Api/PruebaTecnicaCarsales.Api.csproj" Id="7b480914-b588-449a-a6c4-4b11dbe46d6e" />
+  <Project Path="PruebaTecnicaCarsales.Core/PruebaTecnicaCarsales.Core.csproj" Id="e5750739-45c5-4681-81c3-ddaa40e32d67" />
+  <Project Path="PruebaTecnicaCarsales.Domain/PruebaTecnicaCarsales.Domain.csproj" Id="6fc7d467-a179-40d0-9577-8b8f4a5c5e9c" />
+  <Project Path="PruebaTecnicaCarsales.DTO/PruebaTecnicaCarsales.DTO.csproj" Id="7fee2225-cd21-4291-9d84-70473bccb750" />
+  <Project Path="PruebaTecnicaCarsales.Logic/PruebaTecnicaCarsales.Logic.csproj" Id="389927a4-e2b8-4726-8acb-38f94c3416a7" />
+  <Project Path="PruebaTecnicaCarsales.Web/PruebaTecnicaCarsales.Web.csproj" Id="5f1f98cd-c5fd-4288-a800-43c41d1b6f63" />
 </Solution>

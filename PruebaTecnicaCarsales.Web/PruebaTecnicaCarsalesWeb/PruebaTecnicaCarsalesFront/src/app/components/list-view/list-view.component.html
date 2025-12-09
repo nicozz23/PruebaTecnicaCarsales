@@ -1,0 +1,93 @@
+@if (loading()) {
+    <div class="loading-overlay">
+        <div class="spinner"></div>
+    </div>
+}
+<div class="pagination-controls">
+    <button (click)="changePage(-1)" [disabled]="!hasPrevPage() || loading()">Anterior</button>
+    
+    <span>Página {{ currentPage() }} de {{ totalPages() }}</span>
+    
+    <button (click)="changePage(1)" [disabled]="!hasNextPage() || loading()">Siguiente</button> 
+</div>
+<div class="list-container">
+    
+    @if (itemsSignal() && itemsSignal().length > 0) {
+        
+        @for (item of itemsSignal(); track item.id) {
+            
+            <div class="card">
+                
+                <!-- <h3>{{ item.name }}</h3> -->
+                <p class="id-tag">ID: {{ item.id }}</p>
+
+                <div class="details">
+                    
+                    @if (entityType === 'episodes') {
+                        <div *ngIf="asEpisode(item) as episode">
+                            <h3>{{ episode.name }}</h3>
+                            <p>Código: {{ episode.code }}</p> 
+                            <p>Fecha de Estreno: {{ episode.airDate }}</p> 
+                        </div>
+                    } 
+                    
+                  @else if (entityType === 'characters') {
+                    <div *ngIf="asCharacter(item) as character">
+                        
+                        <div class="card-header-bg">
+                            <div class="image-container">
+                                <img [src]="character.imageUrl" [alt]="character.name" class="character-image">
+                            </div>
+                            <h3>{{ character.name }}</h3>
+                        </div>
+
+                        <div class="card-body-details">
+                            <div class="details">
+                                <p><strong>Especie:</strong> {{ character.species }}</p>
+                                
+                                <p>
+                                    <strong>Estado:</strong> 
+                                    <span [class]="'status-' + character.status.toLowerCase()">
+                                        {{ character.status }}
+                                    </span>
+                                </p>
+                                
+                                <p><strong>Género:</strong> {{ character.gender }}</p>
+                                
+                                <p><strong>Ubicación:</strong> {{ character.locationName }}</p> 
+                            </div>
+                        </div>
+                    </div>
+                        }
+                    
+                    @else if (entityType === 'locations') {
+                        <div *ngIf="asLocation(item) as location">
+                            <p>Tipo: {{ location.type }}</p>
+                            <p>Dimensión: {{ location.dimension }}</p>
+                            <p>Creado en: {{ location.created }}</p>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        }
+    } 
+    
+    @else {
+        @if (loading()) {
+            <p class="loading-message">Cargando {{ entityType }}...</p>
+        } @else if (errorMessage()) {
+            <p class="error-message">Error: {{ errorMessage() }}</p>
+        } @else {
+            <p class="no-results">No se encontraron resultados para {{ entityType }}.</p>
+        }
+    }
+</div>
+
+<div class="pagination-controls">
+    <button (click)="changePage(-1)" [disabled]="!hasPrevPage() || loading()">Anterior</button>
+    
+    <span>Página {{ currentPage() }} de {{ totalPages() }}</span>
+    
+    <button (click)="changePage(1)" [disabled]="!hasNextPage() || loading()">Siguiente</button> 
+</div>
